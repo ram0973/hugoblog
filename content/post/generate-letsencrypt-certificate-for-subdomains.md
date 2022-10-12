@@ -9,7 +9,7 @@ tags:
 ---
 <!--more--> 
 ```
-
+So, let's generate Let's Enctrypt certificates
 
 sudo dnf install certbot python3-certbot-dns-digitalocean
 ```
