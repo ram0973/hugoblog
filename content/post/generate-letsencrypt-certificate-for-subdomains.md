@@ -28,6 +28,7 @@ Open file:
 nano ~/certbot-do-creds.ini
 ```
 Insert Digital Ocean API credentials used by Certbot:
+
 dns_digitalocean_token = your_do_token
 
 ```
