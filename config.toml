@@ -44,13 +44,7 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
   # Sidebar text also supports markdown
   # New lines can be added with two spaces at the end of line. New paragraphs can be added with two an empty line.
   # when adding two new lines, remember to remove the indentation otherwise the new line will be treated as a codeblock
-  sidebarText = """Here's a [link to google](https://www.google.com)
-
-  New paragraph
-
-  Another paragraph which has two spaces in the end to create a new line using markdown  
-  New line but not a new paragraph
-  """
+  sidebarText = """"""
   # Sidebar menu - if true will add a sidebar menu between sidebar text and recent posts
   sidebarMenuEnabled = true
   sidebarMenuHeader = "Sidebar Links"
