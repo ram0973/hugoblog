@@ -9,6 +9,7 @@ tags:
 ---
 <!--more--> 
 So, let's generate Let's Encrypt certificates
+
 First, we need to install requisites:
 ```
 sudo dnf install certbot python3-certbot-dns-digitalocean
