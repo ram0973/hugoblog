@@ -31,14 +31,12 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
   #     hrefTargetBlank = true # open links in a new tab
 
 [params]
-  PygmentsCodeFences = true
-  PygmentsStyle = "monokai"
 
   compactIndex = true
 
   # --- Start sidebar options ---
   # Number of last posts that will be displayed in the sidebar - set to 0 or remove to hide this section
-  sidebarRecentLimit = 5
+  sidebarRecentLimit = 10
 
   # Sidebar header - passed to markdownify so you can write markdown here
   sidebarHeader = "Github"
