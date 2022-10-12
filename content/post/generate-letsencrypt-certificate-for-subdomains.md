@@ -18,28 +18,26 @@ Next, create Digital Ocean token file
 touch ~/certbot-do-creds.ini
 ```
 
-Next, restrict the permissions on the file in order to make sure no other user on your server can read it:
+Next, restrict the permissions on the file
 
 ```
 chmod go-rwx ~/certbot-do-creds.ini
 ```
-
+Open file:
 ```
 nano ~/certbot-do-creds.ini
 ```
-
-# DigitalOcean API credentials used by Certbot
+Insert Digital Ocean API credentials used by Certbot:
 dns_digitalocean_token = your_do_token
 
 ```
 sudo certbot certonly -n --dns-digitalocean --dns-digitalocean-credentials ~/certbot-do-creds.ini -d your.domain -d *.your.domain
 ```
+Check certificates renew job:
 
 ```
 sudo systemctl status certbot-renew.timer  
-```
 
-```
 ● certbot-renew.timer - This is the timer to set the schedule for automated renewals
      Loaded: loaded (/usr/lib/systemd/system/certbot-renew.timer; enabled; vendor preset: enabled)
      Active: active (waiting) since Tue 2022-10-04 09:57:19 MSK; 6 days ago
