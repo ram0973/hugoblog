@@ -39,14 +39,14 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
   sidebarRecentLimit = 5
 
   # Sidebar header - passed to markdownify so you can write markdown here
-  sidebarHeader = "Goodies"
+  sidebarHeader = "Github"
 
   # Sidebar text also supports markdown
   # New lines can be added with two spaces at the end of line. New paragraphs can be added with two an empty line.
   # when adding two new lines, remember to remove the indentation otherwise the new line will be treated as a codeblock
   sidebarText = """"""
   # Sidebar menu - if true will add a sidebar menu between sidebar text and recent posts
-  sidebarMenuEnabled = true
+  sidebarMenuEnabled = false
   sidebarMenuHeader = "Sidebar Links"
 
   # sidebar links

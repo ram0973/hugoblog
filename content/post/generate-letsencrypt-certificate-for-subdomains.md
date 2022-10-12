@@ -8,9 +8,9 @@ tags:
 - letsencrypt
 ---
 <!--more--> 
-```
-So, let's generate Let's Enctrypt certificates
+So, let's generate Let's Encrypt certificates
 
+```
 sudo dnf install certbot python3-certbot-dns-digitalocean
 ```
 
