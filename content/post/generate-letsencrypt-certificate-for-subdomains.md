@@ -29,8 +29,9 @@ nano ~/certbot-do-creds.ini
 ```
 Insert Digital Ocean API credentials used by Certbot:
 
-dns_digitalocean_token = your_do_token
+`dns_digitalocean_token = your_do_token`
 
+Generate certificates:
 ```
 sudo certbot certonly -n --dns-digitalocean --dns-digitalocean-credentials ~/certbot-do-creds.ini -d your.domain -d *.your.domain
 ```
