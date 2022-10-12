@@ -1,5 +1,5 @@
 
-baseurl = "https://yabbarov.ru/"
+baseurl = 'https://yabbarov.ru/'
 disablePathToLower = false
 languageCode = "en-us"
 title = "Tutorials corner"
@@ -104,7 +104,7 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
 
   # CSS override files
   # Paths should be relative to the `static` directory
-  customCSS = ["css/custom.css"]
+  customCSS = ["css/custom.css",]
 
   # 404.html header and text - both support markdown
   notFoundHeader = "There's nothing here"
