@@ -9,7 +9,7 @@ tags:
 - strongswan
 ---
 <!--more-->
-Config
+## Create StrongSwan config /etc/strongswan/swanctl/conf.d/swanctl.conf 
 
 ```
 connections {
@@ -46,7 +46,7 @@ pools {
 }
 ```
 
-Iptables rules
+## Iptables rules
 ```
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT # Established and related connections
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP # Invalid packets
