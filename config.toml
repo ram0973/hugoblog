@@ -151,12 +151,12 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
 [[menu.main]]
   Name = "Home Page"
   URL = "/"
-  weight = -5
+  weight = 1
 
 [[menu.main]]
   Name = "Gists"
   URL = "https://yabbarov.ru/gists/"
-  weight = -5
+  weight = 2
 
 
 # Sidebar menus
