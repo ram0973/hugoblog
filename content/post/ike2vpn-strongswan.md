@@ -9,8 +9,9 @@ tags:
 - strongswan
 ---
 <!--more-->
-## Create StrongSwan config /etc/strongswan/swanctl/conf.d/swanctl.conf 
+## Create StrongSwan config 
 
+/etc/strongswan/swanctl/conf.d/swanctl.conf 
 ```
 connections {
     rw {
