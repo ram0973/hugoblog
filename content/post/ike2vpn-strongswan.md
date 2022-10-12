@@ -8,7 +8,44 @@ tags:
 - iptables
 - strongswan
 ---
-<!--more--> 
+<!--more-->
+Config
+
+```
+connections {
+    rw {
+      pools = primary-pool
+      local {
+        auth = pubkey
+        certs = cert.pem
+        id = certificate_domain_name
+      }
+      remote {
+        auth = eap-mschapv2
+      }
+      children {
+        rw {
+           local_ts = 0.0.0.0/0
+        }
+      }
+      send_certreq = no
+    }
+  }
+
+  secrets {
+    eap-username {
+      id = username
+      secret = MyVeryStrongPassword2022#
+    }
+}
+pools {
+    primary-pool {
+        addrs = 10.0.0.0/24
+        dns = 8.8.8.8, 8.8.4.4
+    }
+}
+```
+
 Iptables rules
 ```
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT # Established and related connections
