@@ -1,5 +1,5 @@
 ---
-title: "IKEv2 VPN in Linux Fedora with StrongSwan"
+title: "IKEv2 VPN in Linux Fedora Server with StrongSwan and mobile clients"
 date: 2022-09-29T10:07:04+03:00
 draft: false
 categories:
