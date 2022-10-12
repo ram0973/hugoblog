@@ -9,7 +9,8 @@ tags:
 - strongswan
 ---
 <!--more-->
-## Install Strongswan - IPsec IKEv1/IKEv2 daemon using swanctl
+## On server:
+### Install Strongswan - IPsec IKEv1/IKEv2 daemon using swanctl
 ```
 sudo dnf install strongswan
 
@@ -23,7 +24,7 @@ sudo systemctl status strongswan
 sudo systemctl enable strongswan
 sudo systemctl start strongswan
 ```
-## Create StrongSwan config 
+### Create StrongSwan config 
 
 /etc/strongswan/swanctl/conf.d/swanctl.conf 
 ```
@@ -66,7 +67,7 @@ pools {
 }
 ```
 
-## Iptables rules
+### Add iptables rules
 ```
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT # Established and related connections
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP # Invalid packets
@@ -87,3 +88,8 @@ iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -t nat -A POSTROUTING  -j MASQUERADE
 #iptables -t nat -A POSTROUTING -m policy --pol ipsec --dir out -j MASQUERADE
 ```
+## On client:
+Install StrongSwan from Google Play
+
+[StrongSwan in Google Play logo]!(/img/strongswan.png)
+
