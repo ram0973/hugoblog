@@ -1,5 +1,5 @@
 
-baseurl = "https://yabbarov.ru"
+baseurl = "https://yabbarov.ru/"
 disablePathToLower = false
 languageCode = "en-us"
 title = "Tutorials corner"
