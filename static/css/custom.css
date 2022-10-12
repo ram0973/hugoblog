@@ -1,3 +1,7 @@
+body {
+  max-width: 1600px;
+}
+
 code {
   padding: 10px;
 }
