@@ -72,7 +72,7 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
   author = "ram0973"
 
   # This text appears in the site header under website title
-  subtitle = "Subtitle appears under the website title"
+  subtitle = "Linux - Java - Etc"
 
   # Search engine URL
   searchEngineURL = "https://www.google.com/search"
@@ -104,7 +104,7 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
 
   # CSS override files
   # Paths should be relative to the `static` directory
-  # customCSS = ["css/custom.css","css/custom2.css"]
+  customCSS = ["css/custom.css"]
 
   # 404.html header and text - both support markdown
   notFoundHeader = "There's nothing here"
@@ -153,30 +153,26 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
   URL = "/"
   weight = -5
 
-[[menu.main]]
-  Name = "Google"
-  URL = "https://www.google.com/"
-  weight = -5
-
-[[menu.main]]
-  Name = "This theme on Github"
-  URL = "https://www.github.com/parsiya/hugo-octopress"
+#[[menu.main]]
+#  Name = "Google"
+#  URL = "https://www.google.com/"
+#  weight = -5
 
 
 # Sidebar menus
 # Enable with "sidebarMenuEnabled = true" under [params]
 # Header text is "sidebarMenuHeader" under [params]
-[[menu.sidebar]]
-  Name = "Google"
-  URL = "https://www.google.com"
-  weight = 0
+#[[menu.sidebar]]
+#  Name = "Google"
+#  URL = "https://www.google.com"
+#  weight = 0
 
-[[menu.sidebar]]
-  Name = "Hugo category"
-  URL = "/categories/golang/"
-  weight = 1
+#[[menu.sidebar]]
+#  Name = "Hugo category"
+#  URL = "/categories/golang/"
+#  weight = 1
 
-[[menu.sidebar]]
-  Name = "About page"
-  URL = "/about"
-  weight = 2
+#[[menu.sidebar]]
+#  Name = "About page"
+#  URL = "/about"
+#  weight = 2
