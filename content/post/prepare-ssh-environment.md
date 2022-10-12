@@ -1,5 +1,5 @@
 ---
-title: "Prepare Ssh Environment"
+title: "Prepare SSH Environment"
 date: 2022-10-12T16:11:59+03:00
 draft: false
 toc: true
