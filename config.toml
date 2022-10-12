@@ -56,9 +56,8 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
   sidebarMenuHeader = "Sidebar Links"
 
   # sidebar links
-  github = "https://github.com/parsiya/Hugo-Octopress"
-  bitbucket = "https://bitbucket.org/parsiya/"
-  twitter = "https://twitter.com/cryptogangsta/"
+  github = "https://github.com/ram0973/"
+  twitter = ""
   keybase = ""
   stackoverflow = ""
   linkedin = ""
@@ -76,7 +75,7 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
   truncate = true
 
   # Author's name (appears in meta tags and under posts)
-  author = "Author"
+  author = "ram0973"
 
   # This text appears in the site header under website title
   subtitle = "Subtitle appears under the website title"

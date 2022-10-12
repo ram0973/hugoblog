@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Site title</title>
-    <link>https://example.com/categories/</link>
-    <description>Recent content in Categories on Site title</description>
+    <title>Categories on Tutorials corner</title>
+    <link>https://yabbarov.ru/categories/</link>
+    <description>Recent content in Categories on Tutorials corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Sep 2022 10:07:04 +0300</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Oct 2022 12:36:13 +0300</lastBuildDate><atom:link href="https://yabbarov.ru/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>devops</title>
+      <link>https://yabbarov.ru/categories/devops/</link>
+      <pubDate>Mon, 10 Oct 2022 12:36:13 +0300</pubDate>
+      
+      <guid>https://yabbarov.ru/categories/devops/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>linux</title>
-      <link>https://example.com/categories/linux/</link>
+      <link>https://yabbarov.ru/categories/linux/</link>
       <pubDate>Thu, 29 Sep 2022 10:07:04 +0300</pubDate>
       
-      <guid>https://example.com/categories/linux/</guid>
+      <guid>https://yabbarov.ru/categories/linux/</guid>
       <description></description>
     </item>
     

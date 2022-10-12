@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>strongswan on Site title</title>
-    <link>https://example.com/tags/strongswan/</link>
-    <description>Recent content in strongswan on Site title</description>
+    <title>strongswan on Tutorials corner</title>
+    <link>https://yabbarov.ru/tags/strongswan/</link>
+    <description>Recent content in strongswan on Tutorials corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Sep 2022 10:07:04 +0300</lastBuildDate><atom:link href="https://example.com/tags/strongswan/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Sep 2022 10:07:04 +0300</lastBuildDate><atom:link href="https://yabbarov.ru/tags/strongswan/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Настройка IKEv2 VPN в Linux на базе StrongSwan</title>
-      <link>https://example.com/blog/2022-09-29-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-ikev2-vpn-%D0%B2-linux-%D0%BD%D0%B0-%D0%B1%D0%B0%D0%B7%D0%B5-strongswan/</link>
+      <title>IKEv2 VPN in Linux with StrongSwan</title>
+      <link>https://yabbarov.ru/blog/2022-09-29-ikev2-vpn-in-linux-with-strongswan/</link>
       <pubDate>Thu, 29 Sep 2022 10:07:04 +0300</pubDate>
       
-      <guid>https://example.com/blog/2022-09-29-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-ikev2-vpn-%D0%B2-linux-%D0%BD%D0%B0-%D0%B1%D0%B0%D0%B7%D0%B5-strongswan/</guid>
+      <guid>https://yabbarov.ru/blog/2022-09-29-ikev2-vpn-in-linux-with-strongswan/</guid>
       <description></description>
     </item>
     
