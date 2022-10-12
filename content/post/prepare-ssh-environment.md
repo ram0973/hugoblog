@@ -1,9 +1,9 @@
 ---
 title: "Prepare Ssh Environment"
 date: 2022-10-12T16:11:59+03:00
-draft: true
-toc: false
-comments: false
+draft: false
+toc: true
+comments: true
 categories:
 - devops
 tags:
