@@ -85,7 +85,7 @@ iptables -A INPUT -j DROP
 iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
 #iptables -A FORWARD -j REJECT
 
-iptables -t nat -A POSTROUTING 1 -s 10.0.0.0/24 -j MASQUERADE # NAT for vpn clients
+iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -j MASQUERADE # NAT for vpn clients
 #iptables -t nat -A POSTROUTING -m policy --pol ipsec --dir out -j MASQUERADE
 ```
 ## On client:
