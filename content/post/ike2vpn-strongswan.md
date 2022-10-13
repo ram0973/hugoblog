@@ -91,5 +91,5 @@ iptables -t nat -A POSTROUTING  -j MASQUERADE
 ## On client:
 Install StrongSwan from Google Play
 
-![StrongSwan in Google Play logo](/img/strongswan.png "StrongSwan logo on Android")
+![StrongSwan in Google Play logo](/img/strongswan.webp "StrongSwan logo on Android")
 
