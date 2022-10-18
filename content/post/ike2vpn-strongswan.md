@@ -20,30 +20,40 @@ chmod 700 ~/pki
 
 WARNING: Never store private key of Certification Authority (CA) on VPN gateway since a theft of this master signing key will compromise your PKI.
 
-strongswan pki --gen --type ed25519 --outform pem > ~/pki/private/ca-key.pem
+openssl genpkey -algorithm ed25519 -out ~/pki/private/ca-key.pem
 
 #### CA certificate
 
-strongswan pki --self --ca --lifetime 3652 --in ~/pki/private/ca-key.pem --dn "CN=StrongSwan VPN Root CA" --outform pem > ~/pki/cacerts/ca-cert.pem
+openssl req -new -x509 -nodes -days 3652 -key ~/pki/private/ca-key.pem -out ~/pki/cacerts/ca-cert.pem
 
-CHECK:
-strongswan pki --print --in ~/pki/cacerts/ca-cert.pem
+CHECK certificate:
+openssl x509 -in ~/pki/cacerts/ca-cert.pem -text
 
 #### VPN Server key
 
-strongswan pki --gen --type ed25519 --outform pem > ~/pki/private/server-key.pem
+openssl req -newkey ed25519 -nodes -days 1826 -keyout ~/pki/private/server-key.pem -out ~/pki/private/server-req.pem
 
 #### VPN Server certificate
 
-strongswan pki --pub --in ~/pki/private/server-key.pem | strongswan pki -issue --lifetime 1825 --cacert ~/pki/cacerts/ca-cert.pem --cakey ~/pki/private/ca-key.pem --dn "CN=yabbarov.ru" --san "yabbarov.ru" --flag serverAuth --outform pem > ~/pki/certs/server-cert.pem
+openssl x509 -req -days 1826 -keyout -in ~/pki/private/server-req.pem -out ~/pki/certs/server-cert.pem -CAkey ~/pki/private/ca-key.pem -CA ~/pki/cacerts/ca-cert.pem
+
+#### Client key
+
+openssl req -newkey ed25519 -nodes -days 1826 -keyout ~/pki/private/ramil-key.pem -out ~/pki/private/ramil-req.pem
+
+#### Client certificate
+openssl x509 -req -days 1826 -keyout -in ~/pki/private/ramil-req.pem -out ~/pki/certs/ramil-cert.pem -CAkey ~/pki/private/ca-key.pem -CA ~/pki/cacerts/ca-cert.pem
 
 #### PKCS12 for Android client
-openssl pkcs12 -export -legacy -inkey ~/pki/private/server-key.pem -in ~/pki/certs/server-cert.pem -out server.p12
+openssl pkcs12 -export -legacy -inkey ~/pki/private/ramil-key.pem -in ~/pki/certs/ramil-cert.pem -out server.p12
+
+CHECK:
+openssl pkcs12 -legacy -info -in server.p12
 
 
 cp ~/pki/private/server-key.pem /etc/strongswan/swanctl/private
 cp ~/pki/certs/server-cert.pem /etc/strongswan/swanctl/x509/
-cp ~/pki/certs/ca-cert.pem /etc/strongswan/swanctl/x509ca/
+cp ~/pki/cacerts/ca-cert.pem /etc/strongswan/swanctl/x509ca/
 
 ### Install Strongswan - IPsec IKEv1/IKEv2 daemon using swanctl
 ```
@@ -128,6 +138,8 @@ iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -j MASQUERADE # NAT for vpn client
 ```
 ## On client:
 Install StrongSwan from Google Play
+
+Пароли и безопасность - Конфиденциальность - Шифрование и учётные данные
 
 ![StrongSwan in Google Play logo](/img/strongswan.webp "StrongSwan logo on Android")
 
