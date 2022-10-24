@@ -13,6 +13,26 @@ tags:
 Fedora Server Setup
 
 <!--more-->
+```
+sudo dnf update
+
+sudo nano /etc/systemd/timesyncd.conf
+```
+```
+[Time]
+NTP=0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org
+FallbackNTP=0.fedora.pool.ntp.org 1.fedora.pool.ntp.org 2.fedora.pool.ntp.org 3.fedora.pool.ntp.org
+```
+```
+systemctl enable --now systemd-timesyncd.service
+```
+
+CHECK:
+```
+sudo systemctl status systemd-timesyncd.service
+sudo timedatectl
+```
+
 systemd-resolved is needed by systemd. Unless you're installing an alternative DNS resolver, you should keep it.
 
 It's important to note that it is actually listening for UDP packets on 127.0.0.53:53 to do DNS resolution for you:

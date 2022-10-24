@@ -24,12 +24,15 @@ tags:
 ## On server:
 
 ### Generate certificates
-mkdir -p ~/pki/{cacerts,certs,private,pkcs12}
+mkdir -p ~/pki/{cacerts,certs,private,pkcs12,dh}
 
 chmod 700 ~/pki
 
 ===================
-TRY THIS
+# DH
+openssl dhparam -dsaparam -out ~/pki/dh/dhparams.pem 4096
+
+
 # CA
 openssl req -x509 -newkey rsa:4096 -keyout ~/pki/ca-key.pem -out ~/pki/ca-cert.pem -days 3652 -nodes -subj "/C=RU/O=CA/CN=CA yabbarov.ru"
 
