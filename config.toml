@@ -72,7 +72,7 @@ post = "/blog/:year-:month-:day-:title/" # change the post URL to look like the 
   author = "ram0973"
 
   # This text appears in the site header under website title
-  subtitle = "Linux - Java - Etc"
+  subtitle = "Linux - Devops"
 
   # Search engine URL
   searchEngineURL = "https://www.google.com/search"
