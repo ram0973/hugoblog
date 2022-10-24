@@ -9,47 +9,55 @@ tags:
 - strongswan
 ---
 <!--more-->
+
+Команда ipsec в руководствах - это libreswan а не strongswan!
+
+11: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 500
+    link/none 
+    inet 10.0.0.1/32 scope global noprefixroute tun0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::289c:8b38:c8b4:1cc3/64 scope link stable-privacy 
+       valid_lft forever preferred_lft forever
+
+На линуксе надо ставить запрашивать inner address ! иначе не подключается
+
 ## On server:
 
 ### Generate certificates
-mkdir -p ~/pki/{cacerts,certs,private}
+mkdir -p ~/pki/{cacerts,certs,private,pkcs12}
 
 chmod 700 ~/pki
 
-#### CA private key
+===================
+TRY THIS
+# CA
+openssl req -x509 -newkey rsa:4096 -keyout ~/pki/ca-key.pem -out ~/pki/ca-cert.pem -days 3652 -nodes -subj "/C=RU/O=CA/CN=CA yabbarov.ru"
+
+CHECK: strongswan pki --print --in ~/pki/ca-cert.pem 
+
+# SERVER
 
 WARNING: Never store private key of Certification Authority (CA) on VPN gateway since a theft of this master signing key will compromise your PKI.
 
-openssl genpkey -algorithm ed25519 -out ~/pki/private/ca-key.pem
+openssl req -x509 -newkey rsa:4096 -keyout ~/pki/server-key.pem -out ~/pki/server-cert.pem -days 3652 -nodes -subj /CN=yabbarov.ru -CAkey ~/pki/ca-key.pem -CA ~/pki/ca-cert.pem -addext "subjectAltName=DNS:yabbarov.ru"
 
-#### CA certificate
+CHECK: strongswan pki --print --in ~/pki/server-cert.pem 
 
-openssl req -new -x509 -nodes -days 3652 -key ~/pki/private/ca-key.pem -out ~/pki/cacerts/ca-cert.pem
+# CLIENT
+openssl req -x509 -newkey rsa:4096 -keyout ~/pki/ramil-key.pem -out ~/pki/ramil-cert.pem -days 3652 -nodes -subj /CN=yabbarov.ru -CAkey ~/pki/ca-key.pem -CA ~/pki/ca-cert.pem -addext "subjectAltName=email:ramil@yabbarov.ru"
 
-CHECK certificate:
-openssl x509 -in ~/pki/cacerts/ca-cert.pem -text
+CHECK: strongswan pki --print --in ~/pki/ramil-cert.pem 
 
-#### VPN Server key
-
-openssl req -newkey ed25519 -nodes -days 1826 -keyout ~/pki/private/server-key.pem -out ~/pki/private/server-req.pem
-
-#### VPN Server certificate
-
-openssl x509 -req -days 1826 -keyout -in ~/pki/private/server-req.pem -out ~/pki/certs/server-cert.pem -CAkey ~/pki/private/ca-key.pem -CA ~/pki/cacerts/ca-cert.pem
-
-#### Client key
-
-openssl req -newkey ed25519 -nodes -days 1826 -keyout ~/pki/private/ramil-key.pem -out ~/pki/private/ramil-req.pem
-
-#### Client certificate
-openssl x509 -req -days 1826 -keyout -in ~/pki/private/ramil-req.pem -out ~/pki/certs/ramil-cert.pem -CAkey ~/pki/private/ca-key.pem -CA ~/pki/cacerts/ca-cert.pem
-
-#### PKCS12 for Android client
-openssl pkcs12 -export -legacy -inkey ~/pki/private/ramil-key.pem -in ~/pki/certs/ramil-cert.pem -out server.p12
+# ANDROID PKCS12
+openssl pkcs12 -export -legacy -inkey ~/pki/ramil-key.pem -in ~/pki/ramil-cert.pem -out ~/pki/ramil.p12
 
 CHECK:
-openssl pkcs12 -legacy -info -in server.p12
+openssl pkcs12 -legacy -info -in ~/pki/ramil.p12
 
+sudo cp ~/pki/server-key.pem /etc/strongswan/swanctl/private
+sudo cp ~/pki/server-cert.pem /etc/strongswan/swanctl/x509/
+sudo cp ~/pki/ca-cert.pem /etc/strongswan/swanctl/x509ca/
+===================
 
 cp ~/pki/private/server-key.pem /etc/strongswan/swanctl/private
 cp ~/pki/certs/server-cert.pem /etc/strongswan/swanctl/x509/
@@ -71,44 +79,40 @@ sudo systemctl start strongswan
 ```
 ### Create StrongSwan config 
 
-/etc/strongswan/swanctl/conf.d/swanctl.conf 
+sudo nano /etc/strongswan/swanctl/conf.d/swanctl.conf 
 ```
-connections {
-  rw {
-    pools = primary-pool
-    local {
-      auth = pubkey
-      certs = server-cert.pem
-      id = certificate_domain_name
-    }
-    remote {
-      auth = eap-mschapv2
-    }
-    children {
-      rw {
-         local_ts = 0.0.0.0/0
+  connections {
+    rw {
+      pools = primary-pool
+      local {
+        auth = pubkey
+        certs = server-cert.pem
+        id = yabbarov.ru # subjectAltName=DNS:yabbarov.ru
       }
+      remote {
+        auth = eap-mschapv2
+        eap_id = %any        
+      }
+      children {
+        rw {
+           local_ts = 0.0.0.0/0
+        }
+      }
+      send_certreq = no
     }
-    send_certreq = yes
   }
-}
 
-secrets {
-  eap-username1 {
-    id = username1
-    secret = MyVeryStrongPassword2022#
-  }
-  eap-username2 {
-    id = username2
-    secret = MyVeryStrongPassword2022#
-  }
+  secrets {
+    eap-john {
+      id = john@connor.us
+      secret = MyPassword
+    }
 }
-
 pools {
-  primary-pool {
-    addrs = 10.0.0.0/24
-    dns = 8.8.8.8, 8.8.4.4
-  }
+    primary-pool {
+        addrs = 10.0.0.0/24
+        dns = 8.8.8.8, 8.8.4.4
+    }
 }
 ```
 ```
@@ -140,6 +144,22 @@ iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -j MASQUERADE # NAT for vpn client
 Install StrongSwan from Google Play
 
 Пароли и безопасность - Конфиденциальность - Шифрование и учётные данные
+Установить ramil-cert.p12
+В клиенте загрузить и выбрать сертификат CA: ca-cert.pem
+Тип подключения IKEv2 EAP (Логин/пароль)
+Указать почту и пароль из /etc/strongswan/swanctl/conf.d/swanctl.conf 
 
 ![StrongSwan in Google Play logo](/img/strongswan.webp "StrongSwan logo on Android")
 
+Посмотреть логи в момент подключения: 
+
+sudo swanctl --logs
+Также подробные логи в самом клиенте.
+
+Если ошибка 
+
+Если ошибка в логине или пароле:
+Так и пишет - mschapv2 auth error
+
+## Linux client
+sudo dnf install NetworkManager-strongswan NetworkManager-strongswan-gnome
