@@ -48,6 +48,9 @@ dns_name = "yabbarov.ru"
 sudo certtool --generate-privkey --outfile ca.key
 sudo certtool --generate-self-signed --load-privkey ca.key --template ca.tmpl --outfile ca.pem
 
+VERIFY:
+certtool --verify --infile ~/pki/ocserv/server.pem --load-ca-certificate ~/pki/ocserv/ca.pem
+
 sudo certtool --generate-privkey --outfile server.key
 certtool --generate-certificate --load-privkey server.key --load-ca-certificate ca.pem --load-ca-privkey ca.key --template server.tmpl --outfile server.pem
 
