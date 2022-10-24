@@ -2,7 +2,7 @@
 title: "Fedora Openconnect Vpn"
 date: 2022-10-24T11:49:59+03:00
 draft: false
-toc: true
+toc: false
 comments: true
 categories:
 - devops
@@ -16,8 +16,9 @@ sudo dnf install ocserv
 sudo systemctl enable --now ocserv
 
 IPTABLES:
--A INPUT -p tcp -m tcp --dport 444 -m conntrack --ctstate NEW -j ACCEPT
--A INPUT -p udp -m udp --dport 444 -m conntrack --ctstate NEW -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 444 -m conntrack --ctstate NEW -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport 444 -m conntrack --ctstate NEW -j ACCEPT
+iptables -A POSTROUTING -s 10.0.1.0/24 -j MASQUERADE
 
 cd /etc/pki/ocserv/
 rm -Rf *.*
@@ -73,9 +74,6 @@ route = default
 If something strange happened, try to change isolate-workers option.
 
 sudo ocpasswd -c /etc/ocserv/ocserv.passwords username-fedora
-
-:POSTROUTING ACCEPT [8:532]
--A POSTROUTING -s 10.0.1.0/24 -j MASQUERADE
 
 Linux:
 sudo dnf search NetworkManager-openconnect-gnome  
