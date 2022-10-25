@@ -129,5 +129,3 @@ cryptoapicert "SUBJ:ramil-phone"
 CLIENT CERT HERE
 -----END CERTIFICATE-----
 </ca>
-
-By default all traffic goes on mobile
